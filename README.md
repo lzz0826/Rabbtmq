@@ -1,5 +1,7 @@
 # Rabbtmq
 
+![alt]([URL title](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/amtj2ghbgh.png))
+
 |  名詞   | 描述  |
 |  ----  | ----  |
 | Queue (信道名稱)  | 用於存儲消息，消費者直接綁定Queue進行消費消息 |
