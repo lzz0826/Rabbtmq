@@ -17,9 +17,9 @@ public class RabbitMqUtils {
         //設置ip
         factory.setHost("127.0.0.1");
         //設置用戶名
-        factory.setUsername("tony");
+        factory.setUsername("guest");
         //密碼
-        factory.setPassword("123");
+        factory.setPassword("guest");
         //設置連接
         Connection connection = factory.newConnection();
         //獲取渠道
