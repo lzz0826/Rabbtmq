@@ -19,8 +19,8 @@ Channel channel = connection.createChannel();
 channel.confirmSelect();
 
 
-###1. 單個確認發送
-###2. 批量確認
-###3. 異步批量確認
+### 1. 單個確認發送
+### 2. 批量確認
+### 3. 異步批量確認
 
 
