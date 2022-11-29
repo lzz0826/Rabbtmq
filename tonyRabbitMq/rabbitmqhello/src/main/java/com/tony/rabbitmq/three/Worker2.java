@@ -17,7 +17,6 @@ public class Worker2 {
     //列隊名稱
     private static final String TASK_QUWUW_NAMW = "ack_queue";
 
-
     //接收消息
     public static void main(String[] args) throws IOException, TimeoutException {
 
@@ -69,8 +68,6 @@ public class Worker2 {
         channel.basicConsume(TASK_QUWUW_NAMW,autoAck,deliverCallback,(cancelCallback->{
             System.out.println(cancelCallback +"消息者取消消費接口回調邏輯");
         }));
-
-
 
     }
 

@@ -1,0 +1,54 @@
+package com.tony.rabbitmq.four;
+
+
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.tony.rabbitmq.uitls.RabbitMqUtils;
+import com.tony.rabbitmq.uitls.SleepUitls;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class FastConsumer {
+
+
+    //信道名
+    private static final String QUEUES_NAME = "tonyTest";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMqUtils.getChannel();
+
+        System.out.println("AA 快的消费者 1秒 等待接收");
+
+        //成功接收消息
+        DeliverCallback deliverCallback = (consumerTag, message) ->{
+            SleepUitls.sleepSecond(1);
+            String messageBody = new String(message.getBody(),"UTF-8");
+            System.out.println("AA接收到了 :" + messageBody);
+            //手動應答 basicAck()
+            //1.消息的標記 tag
+            //2.是否批量應答 false : 不批量應答渠道中的消息  true: 批量 (false不批量確保還沒處理完的消息不會一起被應答)
+            channel.basicAck(message.getEnvelope().getDeliveryTag(),false);
+
+        };
+
+        //失败接收消息
+        CancelCallback cancelCallback = (consumerTag) ->{
+            System.out.println(consumerTag +"消息者取消消費接口回調邏輯");
+        };
+
+        //設置不公平分發 (能者多勞 建議) 讓處理快的消費者不會空閒 預設0輪詢
+        int prefetchCount = 1;
+        channel.basicQos(prefetchCount);
+        //採用手動應答(在確定完成處理後才回應可以刪除消息)
+        boolean autoAck = false;
+        //消費者接收消息
+        //1.消費哪個隊列
+        //2.消費成功後是否要自動答應 true 代表的自動答覆 false 手動答覆
+        //3.消費者未成功消回調
+        //4.消費者取消消費的回調
+        channel.basicConsume(QUEUES_NAME,autoAck,deliverCallback,cancelCallback);
+
+    }
+}

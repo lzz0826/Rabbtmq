@@ -37,7 +37,7 @@ public class Producer {
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         //發消息
         String message = "Hool Word";
-        //發送一個消費 .basicPublish()參數
+        //發送一個消息 .basicPublish()參數
         //1.發送到哪個交換機
         //2.路由的Key值是哪個 本次是隊列得名稱
         //3.其他參數訊息
