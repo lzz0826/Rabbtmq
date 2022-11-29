@@ -28,14 +28,14 @@ public class ConfirmMessage {
     private static final int MESSAGE_COUNT = 1000;
 
     public static void main(String[] args) throws Exception {
-        //單個確認發送(性能低 但是發生異常可以確認是哪個訊息有問題)
+        //單個確認發送(效能低 但是發生異常可以確認是哪個訊息有問題)
 //        ConfirmMessage.publishMessateIndividually();//發布1000個單獨確認消息,花了316時間 毫秒
 
-        //批量確認 (性能高 但異常時無法知道哪條數據有問題)
+        //批量確認 (效能高 但異常時無法知道哪條數據有問題)
 //        ConfirmMessage.publishMessageBatch(); //發布1000個批量確認消息,花了119時間 毫秒
 
 
-        //異步批量確認
+        //異步批量確認 (效能高 在發送完後才 進行[批量確認] 還是有可能丟失訊息必須在 nackCallback 設定確認失敗後儲存或重新處理)
         ConfirmMessage.publishMessageAsync(); //發布1000異步確認消息,花了78時間 毫秒
 
 
