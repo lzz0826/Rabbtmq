@@ -1,6 +1,8 @@
 # Rabbtmq
 
-![alt]([URL title](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/amtj2ghbgh.png))
+
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/amtj2ghbgh.png)
+
 
 |  名詞   | 描述  |
 |  ----  | ----  |
