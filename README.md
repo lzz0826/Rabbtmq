@@ -99,6 +99,8 @@ basicQos()
 
 ### 1 Fanout 扇出模式(發佈訂閱 需要同時發給多個消費者處理可以透過交換機Fanout模式發給多個信道) routingKey 設定同一個  
 
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/five 
+
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/%202022-11-301.16.32.png)
 
 正如從名稱中猜到的那樣，它是將接收到的所有消息廣播到它知道的 所有隊列中。  
@@ -115,6 +117,7 @@ Fanout 這種交換類型並不能給我們帶來很大的靈活性-它只能進
 例如我們希 望將日誌消息寫入磁盤的程序僅接收嚴重錯誤(errros)，而不存儲哪些警告(warning)或信息(info)日誌 消息避免浪費磁盤空間。
 
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.19.00.png)
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/six 
 
 
 ### 3
