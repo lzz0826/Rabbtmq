@@ -83,3 +83,24 @@ addConfirmListener(ackCallback,nackCallback);
 basicAck()        
 2. 不公平分發
 basicQos()
+
+# 交換機
+
+創建交換機 : channel.exchangeDeclare(exchange , type)  
+
+綁定交換機與隊列: channel.queueBind(queue, exchange, routingKey)  
+
+
+### 1 Fanout 扇出模式(發佈訂閱) routingKey 設定同一個  
+
+正如從名稱中猜到的那樣，它是將接收到的所有消息廣播到它知道的 所有隊列中。  
+
+創建臨時隊列 channel.queueDeclare().getQueue() 當消費者斷開與隊列的連接後 列隊自動刪除  
+綁定交換機與隊列 queueBind(queue,exchange, routingKey)
+
+### 2 
+
+### 3
+### 4
+
+
