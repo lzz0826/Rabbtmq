@@ -12,6 +12,9 @@
 | Routing Key  | 生產者發送消息給Exchange會指定一個Routing Key。 |
 | Binding Key  | 在綁定Exchange與Queue時會指定一個Binding Key |
 
+補充 : Routing Key ans Binding Key   
+Bindings : 綁定是交換機和隊列之間的橋樑關係。也可以這麼理解: 隊列只對它綁定的交換機的消息感興趣。綁定用參數:routingKey 來表示也可稱該參數為 binding key， 創建綁定我們用代碼:channel.queueBind(queueName, EXCHANGE_NAME, "routingKey");綁定之後的 意義由其交換類型決定。
+
 # 發佈確認
 
 Channel channel = connection.createChannel();
@@ -91,14 +94,14 @@ basicQos()
 綁定交換機與隊列: channel.queueBind(queue, exchange, routingKey)  
 
 
-### 1 Fanout 扇出模式(發佈訂閱) routingKey 設定同一個  
+### 1 Fanout 扇出模式(發佈訂閱 需要同時發給多個消費者處理可以透過交換機Fanout模式發給多個信道) routingKey 設定同一個  
 
 正如從名稱中猜到的那樣，它是將接收到的所有消息廣播到它知道的 所有隊列中。  
 
 創建臨時隊列 channel.queueDeclare().getQueue() 當消費者斷開與隊列的連接後 列隊自動刪除  
 綁定交換機與隊列 queueBind(queue,exchange, routingKey)
 
-### 2 
+### 2 Direct (路由模式)
 
 ### 3
 ### 4
