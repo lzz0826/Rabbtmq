@@ -87,7 +87,7 @@ basicAck()
 2. 不公平分發
 basicQos()
 
-# 交換機
+# 交換機 exchange
 
 創建交換機 : channel.exchangeDeclare(exchange , type)  
 
@@ -96,12 +96,20 @@ basicQos()
 
 ### 1 Fanout 扇出模式(發佈訂閱 需要同時發給多個消費者處理可以透過交換機Fanout模式發給多個信道) routingKey 設定同一個  
 
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/%202022-11-301.16.32.png)
+
 正如從名稱中猜到的那樣，它是將接收到的所有消息廣播到它知道的 所有隊列中。  
 
 創建臨時隊列 channel.queueDeclare().getQueue() 當消費者斷開與隊列的連接後 列隊自動刪除  
 綁定交換機與隊列 queueBind(queue,exchange, routingKey)
 
 ### 2 Direct (路由模式)
+
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.19.00.png)
+
+Fanout 這種交換類型並不能給我們帶來很大的靈活性-它只能進行無意識的 廣播，在這裏我們將使用 direct 這種類型來進行替換，這種類型的工作方式是，消息只去到它綁定的 routingKey 隊列中去。   
+例如我們希 望將日誌消息寫入磁盤的程序僅接收嚴重錯誤(errros)，而不存儲哪些警告(warning)或信息(info)日誌 消息避免浪費磁盤空間。
+
 
 ### 3
 ### 4
