@@ -38,6 +38,8 @@ channel.confirmSelect();
 
 # 消息應答
 
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/022-11-30%2010.34.58.png)
+
 Channel.basicAck();
 
 
