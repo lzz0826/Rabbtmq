@@ -66,9 +66,9 @@ RabbitMQ 分發消息採用的輪訓分發，但是在某種場景下這種策�
 
 
 
-demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/four
 
-演示內容:  ####生產者 
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/four  
+#### 生產者 
 1. 單個確認  
 waitForConfirms()                                     
 2. 批量確認                                                
