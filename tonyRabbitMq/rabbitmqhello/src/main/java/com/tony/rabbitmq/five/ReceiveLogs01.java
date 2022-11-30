@@ -13,8 +13,7 @@ import java.util.concurrent.TimeoutException;
 public class ReceiveLogs01 {
 
 
-    private static final String QUEUES_NAME =  "tinytest01" ;
-
+    //創建交換機名稱
     private static final String EXCHANGE_NAME =  "logs" ;
 
 
@@ -23,7 +22,7 @@ public class ReceiveLogs01 {
         //創建渠道
         Channel channel = RabbitMqUtils.getChannel();
 
-        //創建交換機 exchangeDeclare()  fanout 扇出模式
+        //創建交換機 exchangeDeclare()  fanout 扇出模式(發佈訂閱)
         channel.exchangeDeclare(EXCHANGE_NAME,"fanout");
 
 
@@ -49,7 +48,7 @@ public class ReceiveLogs01 {
         //2.消費成功後是否要自動答應 true 代表的自動答覆 false 手動答覆
         //3.消費者未成功消回調
         //4.消費者取消消費的回調
-        channel.basicConsume(QUEUES_NAME,true,deliverCallback,CancelCallback->{});
+        channel.basicConsume(queuesName,true,deliverCallback,CancelCallback->{});
 
 
     }
