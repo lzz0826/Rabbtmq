@@ -75,8 +75,8 @@ waitForConfirms()
 confirmSelect()                                        
 3. 異步批量確認 
 confirmSelect()  
-addConfirmListener(ackCallback,nackCallback);
-           #### 消費者    
+addConfirmListener(ackCallback,nackCallback);  
+#### 消費者    
 1. 手動應答 autoAck = false;        
 basicAck()        
 2. 不公平分發
