@@ -14,7 +14,7 @@ public class FastConsumer {
 
 
     //信道名
-    private static final String QUEUES_NAME = "tonyTest";
+    private static final String QUEUES_NAME = "tonyTest2";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         Channel channel = RabbitMqUtils.getChannel();

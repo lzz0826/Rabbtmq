@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 public class SlowConsumer {
 
 
-    private static final String QUEUES_NAME = "tonyTest";
+    private static final String QUEUES_NAME = "tonyTest2";
 
     public static void main(String[] args) throws IOException, TimeoutException {
 
@@ -37,11 +37,11 @@ public class SlowConsumer {
             System.out.println(consumerTag +"消息者取消消費接口回調邏輯");
         };
 
-        //设置步公平分发
+        //設置不公平分發 (能者多勞 建議) 讓處理快的消費者不會空閒 預設0輪詢
         int prefetchCount = 1;
         channel.basicQos(prefetchCount);
 
-        //手动答覆
+        //採用手動應答(在確定完成處理後才回應可以刪除消息)
         boolean autoAck = false;
 
         //消費者接收消息

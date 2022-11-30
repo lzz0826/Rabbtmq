@@ -22,10 +22,10 @@ import java.util.concurrent.TimeoutException;
 
 public class ConfirmMessage {
 
-    private static final String QUEUES_NAME = "tonyTest";
+    private static final String QUEUES_NAME = "tonyTest2";
 
     //批量發消息的個數
-    private static final int MESSAGE_COUNT = 1000;
+    private static final int MESSAGE_COUNT = 10;
 
     public static void main(String[] args) throws Exception {
         //單個確認發送(效能低 但是發生異常可以確認是哪個訊息有問題)
@@ -48,7 +48,7 @@ public class ConfirmMessage {
         //隨機生成ID
         String queueName = UUID.randomUUID().toString();
 
-        //生成一個隊列 .queueDeclare參數
+        //生成一個隊列 .queueDeclare
         //1.隊列名稱
         //2.隊列裏面的消息是否持久化(磁碟) 默認情況消息存儲在內存中(false)
         //3.該隊列是否只供一個消費者進行消費,是否進行消息共存, true可以多個消費者消費 (默認false)只能一個消費者消費
@@ -98,9 +98,10 @@ public class ConfirmMessage {
         String queueName = UUID.randomUUID().toString();
         //生成一個隊列 .queueDeclare參數
 
-        boolean durable = false;
-
+        boolean durable = false;//需要讓 Queue(隊列) 進行持久化 防止mq當機(或重啟)后隊列消失
+                               // 如果原先已有同名的false隊列會報錯 須先刪除
         channel.queueDeclare(queueName,durable,false,false,null);
+
         //開啟發布確認
         channel.confirmSelect();
 
@@ -133,10 +134,19 @@ public class ConfirmMessage {
         //開啟確認發布
         channel.confirmSelect();
 
-        //生成對列
+
 //        String queue = UUID.randomUUID().toString();
         String queue = QUEUES_NAME;
-        boolean durable = false;
+
+        boolean durable = false; //需要讓 Queue(隊列) 進行持久化 防止mq當機(或重啟)后隊列消失
+                                 // 如果原先已有同名的false隊列會報錯 須先刪除
+
+        //生成一個隊列 .queueDeclare()
+        //1.隊列名稱
+        //2.隊列裏面的消息是否持久化(磁碟) 默認情況消息存儲在內存中(false)
+        //3.該隊列是否只供一個消費者進行消費,是否進行消息共存, true可以多個消費者消費 (默認false)只能一個消費者消費
+        //4.是否自動刪除 最後一個消費者斷開連接后 該隊語句是否自動刪除 true 自動刪除 (默認false)不自動刪除
+        //5.其他參數
         channel.queueDeclare(queue,durable,false,false,null);
 
 
