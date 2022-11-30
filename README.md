@@ -13,6 +13,9 @@
 | Binding Key  | 在綁定Exchange與Queue時會指定一個Binding Key |
 
 補充 : Routing Key ans Binding Key   
+
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.40.43.png)
+
 Bindings : 綁定是交換機和隊列之間的橋樑關係。也可以這麼理解: 隊列只對它綁定的交換機的消息感興趣。綁定用參數:routingKey 來表示也可稱該參數為 binding key， 創建綁定我們用代碼:channel.queueBind(queueName, EXCHANGE_NAME, "routingKey");綁定之後的 意義由其交換類型決定。
 
 # 發佈確認
@@ -105,10 +108,13 @@ basicQos()
 
 ### 2 Direct (路由模式)
 
-![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.19.00.png)
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.18.47.png)
+
 
 Fanout 這種交換類型並不能給我們帶來很大的靈活性-它只能進行無意識的 廣播，在這裏我們將使用 direct 這種類型來進行替換，這種類型的工作方式是，消息只去到它綁定的 routingKey 隊列中去。   
 例如我們希 望將日誌消息寫入磁盤的程序僅接收嚴重錯誤(errros)，而不存儲哪些警告(warning)或信息(info)日誌 消息避免浪費磁盤空間。
+
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.19.00.png)
 
 
 ### 3
