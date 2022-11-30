@@ -34,3 +34,14 @@ channel.confirmSelect();
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-29-6.07.23.png)
 
 異步確認雖然編程邏輯比上兩個要複雜，但是性價比最高，無論是可靠性還是效率都沒得說， 他是利用回調函數來達到消息可靠性傳遞的，這个中間件也是通過函數回調來保證是否投遞成功。
+
+demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/four
+
+演示內容:  生產者 1. 單個確認                                          消費者 1. 手動應答 autoAck = false;
+                   waitForConfirms()                                        basicAck() 
+                2. 批量確認                                                2. 不公平分發
+                   confirmSelect()                                          basicQos()
+                3. 異步批量確認 
+                   confirmSelect()
+                   addConfirmListener(ackCallback,nackCallback);
+        
