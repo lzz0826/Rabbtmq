@@ -54,7 +54,7 @@ Channel.basicAck();
 
 如果消費者由於某些原因失去連接(其通道已關閉，連接已關閉或 TCP 連接丟失)，導致消息 未發送 ACK 確認，RabbitMQ 將了解到消息未完全處理，並將對其重新排隊。如果此時其他消費者 可以處理，它將很快將其重新分發給另一個消費者。這樣，即使某個消費者偶爾死亡，也可以確 保不會丟失任何消息。
 
-### 4. 不公平分發 (能者多勞,可以讓先處理完的繼續些下個等待中得訊息,  默認為輪序分發 )
+### 4. 不公平分發 (能者多勞,可以讓先處理完的繼續下個等待中得訊息,  默認為輪序分發 )
 
 RabbitMQ 分發消息採用的輪訓分發，但是在某種場景下這種策略並不是 很好，比方說有兩個消費者在處理任務，其中有個消費者 1 處理任務的速度非常快，而另外一個消費者 2 處理速度卻很慢，這個時候我們還是採用輪訓分發的化就會到這處理速度快的這個消費者很大一部分時間 處於空閑狀態，而處理慢的那個消費者一直在幹活，這種分配方式在這種情況下其實就不太好，但是 RabbitMQ 並不知道這種情況它依然很公平的進行分發。
 
@@ -68,11 +68,16 @@ RabbitMQ 分發消息採用的輪訓分發，但是在某種場景下這種策�
 
 demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/four
 
-演示內容:  生產者 1. 單個確認                                          消費者 1. 手動應答 autoAck = false;
-                   waitForConfirms()                                        basicAck() 
-                2. 批量確認                                                2. 不公平分發
-                   confirmSelect()                                          basicQos()
-                3. 異步批量確認 
-                   confirmSelect()
-                   addConfirmListener(ackCallback,nackCallback);
-        
+演示內容:  ####生產者 
+1. 單個確認  
+waitForConfirms()                                     
+2. 批量確認                                                
+confirmSelect()                                        
+3. 異步批量確認 
+confirmSelect()  
+addConfirmListener(ackCallback,nackCallback);
+           #### 消費者    
+1. 手動應答 autoAck = false;        
+basicAck()        
+2. 不公平分發
+basicQos()
