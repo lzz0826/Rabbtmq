@@ -36,6 +36,9 @@ public class ReceiveLogsDirect02 {
 
         //多重綁定 routing_key
         // **注意如果該隊列沒有綁過會重起會新增 但是刪除需要到MQ刪除才會有效(代碼刪掉重起MQ還是綁定狀態)
+        //1.隊列名
+        //2.交換機名
+        //3.routing_key
         channel.queueBind(queuesName,EXCHANGE_NAME,"error");
 
         DeliverCallback deliverCallback = (consumerTag,  message)->{

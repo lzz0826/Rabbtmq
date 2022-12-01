@@ -210,6 +210,11 @@ public class ConfirmMessage {
 
         }
         long endTime = System.currentTimeMillis();
+        //發送消息
+        //1.交換機名
+        //2.routingKey
+        //3.附加的參數 MessageProperties
+        //4.發送的消息
         System.out.println("發布"+MESSAGE_COUNT+"異步確認消息,花了"+ (endTime-beginTime) + "時間 毫秒");
 
 
