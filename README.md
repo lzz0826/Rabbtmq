@@ -120,7 +120,16 @@ Fanout 這種交換類型並不能給我們帶來很大的靈活性-它只能進
 ### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/six 
 
 
-### 3
+### 3 Topic (主題模式)
+
+發送到類型是 topic 交換機的消息的 routing_key 不能隨意寫，必須滿足一定的要求，它必須是一個單 詞列表，以點號分隔開。這些單詞可以是任意單詞，比如說:"stock.usd.nyse", "nyse.vmw", "quick.orange.rabbit".這種類型的。當然這個單詞列表最多不能超過 255 個字節。  
+在這個規則列表中，其中有兩個替換符是大家需要注意的  
+(*星號)可以代替一個單詞  
+(#井號)可以替代零個或多個單詞 
+
+發送到類型是 topic 交換機的消息的 routing_key 不能隨意寫，必須滿足一定的要求，它必須是一個單 詞列表，以點號分隔開。這些單詞可以是任意單詞，比如說:"stock.usd.nyse", "nyse.vmw", "quick.orange.rabbit".這種類型的。當然這個單詞列表最多不能超過 255 個字節。   
+
+
 ### 4
 
 
