@@ -114,10 +114,12 @@ basicQos()
 
 
 Fanout 這種交換類型並不能給我們帶來很大的靈活性-它只能進行無意識的 廣播，在這裏我們將使用 direct 這種類型來進行替換，這種類型的工作方式是，消息只去到它綁定的 routingKey 隊列中去。   
-例如我們希 望將日誌消息寫入磁盤的程序僅接收嚴重錯誤(errros)，而不存儲哪些警告(warning)或信息(info)日誌 消息避免浪費磁盤空間。
+例如我們希 望將日誌消息寫入磁盤的程序僅接收嚴重錯誤(errros)，而不存儲哪些警告(warning)或信息(info)日誌 消息避免浪費磁盤空間。  
+
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/six 
 
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-11-30%203.19.00.png)
-### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/six 
+
 
 
 ### 3 Topic (主題模式)
@@ -132,6 +134,22 @@ Topic (主題模式)中是包含 Fanout (扇出模式.發佈訂閱) 和 Direct (
 當一個隊列綁定鍵是#,那麼這個隊列將接收所有數據，就有點像 fanout了  
 如果隊列綁定鍵當中沒有#和*出現，那麼該隊列綁定類型就是 direct 了
 
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-01%2010.16.44.png)
+
+Q1-->綁定的是
+中間帶 orange 帶 3 個單詞的字符串(*.orange.*)
+Q2-->綁定的是
+最後一個單詞是 rabbit 的 3 個單詞(*.*.rabbit)
+第一個單詞是 lazy 的多個單詞(lazy.#)
+
+quick.orange.rabbit : 被隊列 Q1Q2 接收到  
+lazy.orange.elephant : 被隊列 Q1Q2 接收到  
+quick.orange.fox : 被隊列 Q1 接收到   
+lazy.brown.fox : 被隊列 Q2 接收到   
+lazy.pink.rabbit : 雖然滿足兩個綁定但只被隊列 Q2 接收一次   
+quick.brown.fox : 不匹配任何綁定不會被任何隊列接收到會被丟棄  
+quick.orange.male.rabbit : 是四個單詞不匹配任何綁定會被丟棄   
+lazy.orange.male.rabbit : 是四個單詞但匹配   
 
 
 ### 4
