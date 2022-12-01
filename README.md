@@ -134,13 +134,14 @@ Topic (主題模式)中是包含 Fanout (扇出模式.發佈訂閱) 和 Direct (
 當一個隊列綁定鍵是#,那麼這個隊列將接收所有數據，就有點像 fanout了  
 如果隊列綁定鍵當中沒有#和*出現，那麼該隊列綁定類型就是 direct 了
 
-![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-01%2010.16.44.png)
+下圖表示 :   
+Q1-->綁定的是  
+中間帶 orange 帶 3 個單詞的字符串(*.orange.*)  
+Q2-->綁定的是  
+最後一個單詞是 rabbit 的 3 個單詞(*.*.rabbit)  
+第一個單詞是 lazy 的多個單詞(lazy.#)    
 
-Q1-->綁定的是
-中間帶 orange 帶 3 個單詞的字符串(*.orange.*)
-Q2-->綁定的是
-最後一個單詞是 rabbit 的 3 個單詞(*.*.rabbit)
-第一個單詞是 lazy 的多個單詞(lazy.#)
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-01%2010.16.44.png)
 
 quick.orange.rabbit : 被隊列 Q1Q2 接收到  
 lazy.orange.elephant : 被隊列 Q1Q2 接收到  
