@@ -143,6 +143,8 @@ Q2-->綁定的是
 
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-01%2010.16.44.png)
 
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/seven   
+
 quick.orange.rabbit : 被隊列 Q1Q2 接收到  
 lazy.orange.elephant : 被隊列 Q1Q2 接收到  
 quick.orange.fox : 被隊列 Q1 接收到   
