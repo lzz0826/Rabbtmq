@@ -161,7 +161,7 @@ lazy.orange.male.rabbit : 是四個單詞但匹配
 
 ### 1.消息TTL過期   
 
-在生產者中設定(單位ms) : new AMQP.BasicProperties().builder().expiration("10000").build();
+在生產者中設定(單位ms) : new AMQP.BasicProperties().builder().expiration("10000").build();  
 在消費者中設定 : arguments.put("x-message-ttl",10000);
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.07.40.png)
 
