@@ -19,8 +19,10 @@ public class EmitLogTopic {
 
         Channel channel = RabbitMqUtils.getChannel();
 
-//        Q1-->綁定的是中間帶 orange 帶 3 個單詞的字符串(*.orange.*)
-//        Q2-->綁定的是最後一個單詞是 rabbit 的 3 個單詞(*.*.rabbit)
+//        Q1-->綁定的是
+//             中間帶 orange 帶 3 個單詞的字符串(*.orange.*)
+//        Q2-->綁定的是
+//             最後一個單詞是 rabbit 的 3 個單詞(*.*.rabbit)
 //             第一個單詞是 lazy 的多個單詞(lazy.#)
 
 
