@@ -159,7 +159,7 @@ lazy.orange.male.rabbit : 是四個單詞但匹配
 
 ### 有三種情況會成為死信  
 
-### 1.消息TTL過期   
+### 1.消息TTL過期(推薦設定在生產者中 可以對應不同的需要)   
 
 在生產者中設定(單位ms) : new AMQP.BasicProperties().builder().expiration("10000").build();  
 在消費者中設定 : arguments.put("x-message-ttl",10000);
