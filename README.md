@@ -155,6 +155,28 @@ quick.orange.male.rabbit : 是四個單詞不匹配任何綁定會被丟棄
 lazy.orange.male.rabbit : 是四個單詞但匹配   
 
 
-### 4
+# 死信隊列
+
+### 有三種情況會成為死信  
+
+### 消息TTL過期   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.07.40.png)
+
+### 隊列達到最大長度   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.17.00.png)
+
+### 消息被拒絕   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.18.59.png)
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.15.51.png)
+
+### 演示內容:demo:tonyRabbitMq/rabbitmqhello/src/main/java/com/tony/rabbitmq/eight    
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%202.55.45.png)
+
+
+
+
+
+
+
 
 
