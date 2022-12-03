@@ -160,14 +160,21 @@ lazy.orange.male.rabbit : 是四個單詞但匹配
 ### 有三種情況會成為死信  
 
 ### 1.消息TTL過期   
+
+在生產者中設定(單位ms) : new AMQP.BasicProperties().builder().expiration("10000").build();
+在消費者中設定 : arguments.put("x-message-ttl",10000);
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.07.40.png)
 
 
 ### 2.隊列達到最大長度   
+
+在消費者中設定 : arguments.put("x-max-length",6);
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.17.00.png)
 
 
-### 3.消息被拒絕   
+### 3.消息被拒絕(需要手動答應)   
+
+ 在消費者中設定 : channel.basicReject(message.getEnvelope().getDeliveryTag(),false);
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.18.59.png)
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-03%203.15.51.png)
 
