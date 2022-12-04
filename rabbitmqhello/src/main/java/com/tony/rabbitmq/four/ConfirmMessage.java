@@ -25,7 +25,7 @@ public class ConfirmMessage {
     private static final String QUEUES_NAME = "tonyTest2";
 
     //批量發消息的個數
-    private static final int MESSAGE_COUNT = 10;
+    private static final int MESSAGE_COUNT = 1000;
 
     public static void main(String[] args) throws Exception {
         //單個確認發送(效能低 但是發生異常可以確認是哪個訊息有問題)
