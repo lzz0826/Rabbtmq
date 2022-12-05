@@ -26,8 +26,30 @@ public class TtlQueueConfig {
     //聲明普通隊列 40s
     private static final String QB_QUEUE ="QB";
 
+
     //聲明死信隊列
     private static final String QD_DEAD_LETTER_QUEUE ="QD";
+
+
+    //聲明普通隊列QC 沒有設定時間
+    private static final String QC_QUEUE = "QC";
+    @Bean("queueC")
+    public Queue queueC(){
+        Map<String,Object> arguments = new HashMap<>(2);
+        //設置死信交換機
+        arguments.put("x-dead-letter-exchange",Y_DEAD_LETTER_EXCHANGE);
+        //設置死信RoutingKey
+        arguments.put("x-dead-letter-routing-key","YD");
+        //TTl 沒有寫TTl 交給生產者決定
+        return QueueBuilder.durable(QC_QUEUE).withArguments(arguments).build();
+    }
+
+    @Bean
+    public Binding queueCBindingX(@Qualifier("queueC") Queue queueC,
+                                  @Qualifier("xExchange")DirectExchange xExchange){
+        return BindingBuilder.bind(queueC).to(xExchange).with("XC");
+    }
+
 
 
     //--------------聲明交換機-----------------
@@ -36,6 +58,8 @@ public class TtlQueueConfig {
     public DirectExchange xExchange(){
         return new DirectExchange(X_EXCHANGE);
     }
+
+
     //聲明yExchange 死信交換機
     @Bean("yExchange")
     public DirectExchange yExchange(){
@@ -75,7 +99,10 @@ public class TtlQueueConfig {
         return QueueBuilder.durable(QB_QUEUE).withArguments(arguments).build();
     }
 
-    //聲明普通隊列
+
+
+
+    //聲明死信隊列
     @Bean("queueD")
     public Queue QueueD(){
         return QueueBuilder.durable(QD_DEAD_LETTER_QUEUE).build();
@@ -99,8 +126,8 @@ public class TtlQueueConfig {
 
     @Bean
     public Binding queueDBindingY(@Qualifier("queueD") Queue queueD,
-                                  @Qualifier("yExchange") DirectExchange xExchange){
-        return BindingBuilder.bind(queueD).to(xExchange).with("YD");
+                                  @Qualifier("yExchange") DirectExchange yExchange){
+        return BindingBuilder.bind(queueD).to(yExchange).with("YD");
     }
 
 
