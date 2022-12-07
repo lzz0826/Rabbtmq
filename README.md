@@ -184,6 +184,63 @@ lazy.orange.male.rabbit : 是四個單詞但匹配
 
 
 
+# 延遲隊列
+
+延時隊列,隊列內部是有序的，最重要的特性就體現在它的延時屬性上，延時隊列中的元素是希望在指定時間到了以後或之前取出和處理，簡單來說，延時隊列就是用來存放需要在指定時間被處理的
+元素的隊列。
+
+###延遲隊列使用場景:  
+1.訂單在十分鐘之內未支付則自動取消. 
+2.新創建的店鋪，如果在十天內都沒有上傳過商品，則自動發送消息提醒。  
+3.用戶註冊成功后，如果三天內沒有登陸則進行短信提醒。  
+4.用戶發起退款，如果三天內沒有得到處理則通知相關運營人員。  
+5.預定會議后，需要在預定的時間點前十分鐘通知各個與會人員參加會議. 
+
+![image]()
+
+###RabbitMQ 中的 TTL  
+
+TTL 是 RabbitMQ 中一個消息或者隊列的屬性，表明一條消息或者該隊列中的所有消息的最大存活時間，單位是毫秒。換句話說，如果一條消息設置了 TTL 屬性或者進入了設置 TTL 屬性的隊列，那麼這
+條消息如果在 TTL 設置的時間內沒有被消費，則會成為"死信"。如果同時配置了隊列的 TTL 和消息的TTL，那麼較小的那個值將會被使用，有兩種方式設置 TTL。   
+
+###隊列設置 TTL:   
+
+arguments.put("x-message-ttl",10000);
+return QueueBuilder.durable(QA_QUEUE).withArguments(arguments).build();
+
+###消息設置(推薦使用生產者配置 可以使用一個信道和交換機靈活配置時間) TTL   
+
+MessagePostProcessor 設定參數    
+
+      //MessagePostProcessor 設定參數    
+        MessagePostProcessor messagePostProcessor = new MessagePostProcessor() {    
+            @Override   
+            public Message postProcessMessage(Message message) throws AmqpException {   
+                //設置時間   
+                message.getMessageProperties().setExpiration(ttlTime);   
+                return message;   
+            }   
+        };  
+rabbitTemplate.convertAndSend("X","XC",message,messagePostProcessor);  
+
+###兩者區別:   
+如果設置了隊列的 TTL 屬性，那麼一旦消息過期，就會被隊列丟棄(如果配置了死信隊列被丟到死信隊列中)，而第二種方式，消息即使過期，也不一定會被馬上丟棄，因為消息是否過期是在即將投遞到消費者之前判定的，如果當前隊列有嚴重的消息積壓情況，則已過期的消息也許還能存活較長時間；另外，還需要注意的一點是，如果不設置 TTL，表示消息永遠不會過期，如果將 TTL 設置為 0，則表示除非此時可以直接投遞該消息到消費者，否則該消息將會被丟棄。
+
+
+###隊列 TTL 實例:     
+
+![image]()   
+
+發起請求:  
+http://localhost:8080/ttl/sendExpirationMsg/你好 1/20000  
+http://localhost:8080/ttl/sendExpirationMsg/你好 2/2000   
+    
+預計情況 你好 2 會先被接收到 , 但是結果是 你好 1  你好 2 同時個收到。  
+
+![image]()  
+
+最開始的時候，就介紹過如果使用在消息屬性上設置 TTL 的方式，消息可能並不會按時“死亡“，因為 RabbitMQ 只會檢查第一個消息是否過期，如果過期則丟到死信隊列，如果第一個消息的延時時長很長，而第二個消息的延時時長很短，第二個消息並不會優先得到執行(RabbitMQ 是依照順序排隊的)。
+
 
 
 
