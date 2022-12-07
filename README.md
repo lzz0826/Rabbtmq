@@ -241,9 +241,15 @@ http://localhost:8080/ttl/sendExpirationMsg/你好 2/2000
 
 最開始的時候，就介紹過如果使用在消息屬性上設置 TTL 的方式，消息可能並不會按時“死亡“，因為 RabbitMQ 只會檢查第一個消息是否過期，如果過期則丟到死信隊列，如果第一個消息的延時時長很長，而第二個消息的延時時長很短，第二個消息並不會優先得到執行(RabbitMQ 是依照順序排隊的)。
 
+### 安裝延遲隊列插件:    
 
+在官網上下載 https://www.rabbitmq.com/community-plugins.html，下載  
 
+rabbitmq_delayed_message_exchange 插件，然後解壓放置到 RabbitMQ 的插件目錄。  
 
+進入 RabbitMQ 的安裝目錄下的 plgins 目錄，執行下面命令讓該插件生效，然後重啟 RabbitMQ   
+/usr/lib/rabbitmq/lib/rabbitmq_server-3.8.8/plugins
+rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 
 
