@@ -243,13 +243,16 @@ http://localhost:8080/ttl/sendExpirationMsg/你好 2/2000
 
 ### 安裝延遲隊列插件:    
 
-在官網上下載 https://www.rabbitmq.com/community-plugins.html，下載  
+在官網上下載 https://www.rabbitmq.com/community-plugins.html   
 
-rabbitmq_delayed_message_exchange 插件，然後解壓放置到 RabbitMQ 的插件目錄。  
+下載rabbitmq_delayed_message_exchange 插件，然後解壓放置到 RabbitMQ 的插件目錄。  
 
 進入 RabbitMQ 的安裝目錄下的 plgins 目錄，執行下面命令讓該插件生效，然後重啟 RabbitMQ   
-/usr/lib/rabbitmq/lib/rabbitmq_server-3.8.8/plugins
-rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+/usr/lib/rabbitmq/lib/rabbitmq_server-3.8.8/plugins   
+rabbitmq-plugins enable rabbitmq_delayed_message_exchange  
+
+完成後進入UI介面新增交換機類型:
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/%202022-12-07%2011.40.56.png)   
 
 
 
