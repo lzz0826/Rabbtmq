@@ -205,10 +205,10 @@ TTL 是 RabbitMQ 中一個消息或者隊列的屬性，表明一條消息或者
 
 ### 隊列設置 TTL:   
 
-arguments.put("x-message-ttl",10000);
+arguments.put("x-message-ttl",10000);   
 return QueueBuilder.durable(QA_QUEUE).withArguments(arguments).build();
 
-### 消息設置(推薦使用生產者配置 可以使用一個信道和交換機靈活配置時間) TTL   
+### 消息設置TTL:(推薦使用生產者配置 可以使用一個信道和交換機靈活配置時間)    
 
 MessagePostProcessor 設定參數    
 
