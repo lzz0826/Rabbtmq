@@ -258,17 +258,19 @@ rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 ### 基本架構 :    
 
-![image]()   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-11%204.51.49.png)   
 
 ### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/
 ### controller/SendMsgController.java(生產者)   
 ### config/DelayedQueueConfig.java(設定)   
 ### consumer/DelayedQueueConsumer.java(消費者)    
 
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-11%204.51.49.png)   
+
 
 http://localhost:8080/ttl/sendDelayMsg/插件你好01/20000
 
-http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
+http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000   
 
-
-
+解決了一般死定隊列作為延遲隊列的瑕疵:
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-11%205.18.53.png)   
