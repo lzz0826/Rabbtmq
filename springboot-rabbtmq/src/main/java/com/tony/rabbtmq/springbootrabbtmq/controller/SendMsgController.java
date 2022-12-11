@@ -3,6 +3,7 @@ package com.tony.rabbtmq.springbootrabbtmq.controller;
 
 //發送延遲消息
 
+import com.tony.rabbtmq.springbootrabbtmq.config.DelayedQueueConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
@@ -39,13 +40,12 @@ public class SendMsgController {
     }
 
 
+    //開始發消息 消息TTL
     @GetMapping("/sendExpirationMsg/{message}/{ttlTime}")
     public void sedMsg(@PathVariable("message") String message ,
             @PathVariable("ttlTime") String ttlTime){
         log.info("當前時間 : {} , 發送一條時常{}訊息給隊列QC : " ,
                 new Date().toString(),ttlTime,message);
-
-
         //MessagePostProcessor 設定參數
         MessagePostProcessor messagePostProcessor = new MessagePostProcessor() {
             @Override
@@ -58,6 +58,27 @@ public class SendMsgController {
 
         rabbitTemplate.convertAndSend("X","XC",message,messagePostProcessor);
 
+
+    }
+
+
+    //延遲隊列基於插件
+    @GetMapping("/sendDelayMsg/{message}/{delayTime}")
+    public void sedDelayedMsg(@PathVariable String message , @PathVariable Integer delayTime ){
+        log.info("當前時間 : {} , 發送一條時常{}訊息給延遲隊列delayed.queue : " ,
+                new Date().toString(),delayTime,message);
+
+        //MessagePostProcessor 設定參數
+        MessagePostProcessor messagePostProcessor = new MessagePostProcessor() {
+            @Override
+            public Message postProcessMessage(Message message) throws AmqpException {
+                //設置延遲時間 毫秒
+                message.getMessageProperties().setDelay(delayTime);
+                return message;
+            }
+        };
+
+        rabbitTemplate.convertAndSend(DelayedQueueConfig.DELAYED_EXCHANG_NAME, DelayedQueueConfig.DELAYED_ROUTINGKEY_NAME,message,messagePostProcessor);
 
     }
 
