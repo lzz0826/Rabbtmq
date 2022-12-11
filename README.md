@@ -258,5 +258,16 @@ rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 ### 基本架構 :    
 
+![image]()   
+
+### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/controller/SendMsgController.java(生產者)   
+###              springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/config/DelayedQueueConfig.java(設定)   
+###              springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/consumer/DelayedQueueConsumer.java(消費者)    
+
+
+http://localhost:8080/ttl/sendDelayMsg/插件你好01/20000
+
+http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
+
 
 
