@@ -184,7 +184,7 @@ lazy.orange.male.rabbit : 是四個單詞但匹配
 
 
 
-# 延遲隊列
+# 延遲隊列(基於死信隊列 有缺陷)
 
 延時隊列,隊列內部是有序的，最重要的特性就體現在它的延時屬性上，延時隊列中的元素是希望在指定時間到了以後或之前取出和處理，簡單來說，延時隊列就是用來存放需要在指定時間被處理的
 元素的隊列。
@@ -241,6 +241,8 @@ http://localhost:8080/ttl/sendExpirationMsg/你好 2/2000
 
 最開始的時候，就介紹過如果使用在消息屬性上設置 TTL 的方式，消息可能並不會按時“死亡“，因為 RabbitMQ 只會檢查第一個消息是否過期，如果過期則丟到死信隊列，如果第一個消息的延時時長很長，而第二個消息的延時時長很短，第二個消息並不會優先得到執行(RabbitMQ 是依照順序排隊的)。
 
+# 延遲隊列(基於插件)
+
 ### 安裝延遲隊列插件:    
 
 在官網上下載 https://www.rabbitmq.com/community-plugins.html   
@@ -253,6 +255,8 @@ rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 完成後進入UI介面新增交換機類型:
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/%202022-12-07%2011.40.56.png)   
+
+### 基本架構 :    
 
 
 
