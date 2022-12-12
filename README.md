@@ -292,10 +292,10 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
 
 ### 配置文件： 
 
-### spring.rabbitmq.publisher-returns=true (開啟退回)
+### spring.rabbitmq.publisher-returns=true (開啟退回：處理信道異常)
 當信道異常或找不到該信道時退回給生此產者
 
-### spring.rabbitmq.publisher-confirm-type=correlated  (設定發佈確認模式)
+### spring.rabbitmq.publisher-confirm-type=correlated  (設定發佈確認模式:處理交換機異常)
 
 NONE  
 禁用發布確認模式，是默認值   
