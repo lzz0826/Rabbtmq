@@ -315,3 +315,5 @@ SIMPLE
 ### config/ConfirmConfig.java(設定)   
 ### config/MyCallBack.java(*回調接口)   
 ### consumer/Consumer.java(消費者)    
+
+http://localhost:8080/confirm/sendMessage/%E9%AB%98%E7%B4%9A%E7%A2%BA%E8%AA%8D
