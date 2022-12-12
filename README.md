@@ -277,3 +277,27 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
 當然，延時隊列還有很多其它選擇，比如利用 Java 的 DelayQueue，利用 Redis 的 zset，利用 Quartz或者利用 kafka 的時間輪，這些方式各有特點,看需要適用的場景.  
 
 
+# 發布確認 springboot 版本 (確認機制:防止 rabbitmq 重啟或是其他因素導致交換機或是信道死亡 )  
+
+在生產環境中由於一些不明原因，導致 rabbitmq 重啟，在 RabbitMQ 重啟期間生產者消息投遞失敗，導致消息丟失，需要手動處理和恢復。於是，我們開始思考，如何才能進行 RabbitMQ 的消息可靠投遞呢？   
+特別是在這樣比較極端的情況，RabbitMQ (集群)不可用的時候，無法投遞的消息該如何處理呢: (一般情況會有 集群 存在確保其中一個服務死掉時有其他的可以繼續投遞)  
+
+### 確認機制方案： 
+
+![image]()   
+
+### 架構圖： 
+
+![image]()   
+
+### 配置文件： spring.rabbitmq.publisher-confirm-type=correlated  
+
+NONE  
+禁用發布確認模式，是默認值   
+
+CORRELATED  
+發布消息成功到交換器後會觸發回調方法   
+
+SIMPLE  
+經測試有兩種效果，其一效果和 CORRELATED 值一樣會觸發回調方法，其二在發布消息成功后使用 rabbitTemplate 調用waitForConfirm或 waitForConfirmsOrDie 方法等待 broker 節點返回發送結果，根據返回結果來判定下一步的邏輯，要注意的點是waitForConfirmsOrDie 方法如果返回 false 則會關閉 channel，則接下來無法發送消息到 broker   
+
