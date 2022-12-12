@@ -286,10 +286,6 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
 
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%201.44.02.png)   
 
-### 架構圖： 
-
-![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%201.44.16.png)   
-
 ### 配置文件： 
 
 ### spring.rabbitmq.publisher-returns=true (開啟退回：處理信道異常)
@@ -306,7 +302,9 @@ CORRELATED
 SIMPLE  
 經測試有兩種效果，其一效果和 CORRELATED 值一樣會觸發回調方法，其二在發布消息成功后使用 rabbitTemplate 調用waitForConfirm或 waitForConfirmsOrDie 方法等待 broker 節點返回發送結果，根據返回結果來判定下一步的邏輯，要注意的點是waitForConfirmsOrDie 方法如果返回 false 則會關閉 channel，則接下來無法發送消息到 broker   
 
+### 架構圖： 
 
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%201.44.16.png)   
 
 ### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/
 ### controller/ProducerController.java(生產者)   
