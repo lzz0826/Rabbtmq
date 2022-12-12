@@ -39,9 +39,9 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback ,RabbitTemplat
         rabbitTemplate.setReturnCallback(this);
         /**
          * true：
-         * 交换机无法将消息进行路由时，会将该消息返回给生产者
+         * 交換機無法將消息進行路由時，會將該消息返回給生產者
          * false：
-         * 如果发现消息无法进行路由，则直接丢弃
+         * 如果發現消息無法進行路由，則直接丟棄
          */
         rabbitTemplate.setMandatory(true);
 
@@ -59,7 +59,6 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback ,RabbitTemplat
      * 2.2 ack 交換機接收到消息 false
      * 2.3 cause 失敗的原因
     */
-
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         //防止空指針 有id的話取 correlationData.getId() 否則拿""

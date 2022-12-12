@@ -35,7 +35,7 @@ public class ProducerController {
         //測試沒異常的情況
         correlationData1.setId("1");
         rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
-                ConfirmConfig.CONFIRM_ROUTING_KEY,message,correlationData1);
+                ConfirmConfig.CONFIRM_ROUTING_KEY,message+"KEY1",correlationData1);
         log.info("發送內容正確的 : {}" ,message+"KEY1");
 
 
@@ -50,11 +50,11 @@ public class ProducerController {
 
 
 
-//        //測試信道機死掉 (目前回調無法解決信道死掉問題)
+//        //測試信道機死掉 (以設置消息回退:信道異常時退回給生產者)
 //        CorrelationData correlationData3 = new CorrelationData();
 //        correlationData3.setId("3");
 //        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
-//                ConfirmConfig.CONFIRM_ROUTING_KEY+"2",message,correlationData3);
+//                ConfirmConfig.CONFIRM_ROUTING_KEY+"2",message+"KEY12",correlationData3);
 //        log.info("發送信道異常的 ROUTINGKEY12 : {}" ,message+"KEY12");
 
     }
