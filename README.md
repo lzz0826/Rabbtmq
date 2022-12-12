@@ -290,7 +290,12 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
 
 ![image]()   
 
-### 配置文件： spring.rabbitmq.publisher-confirm-type=correlated  
+### 配置文件： 
+
+### spring.rabbitmq.publisher-returns=true (開啟退回)
+當信道異常或找不到該信道時退回給生此產者
+
+### spring.rabbitmq.publisher-confirm-type=correlated  (設定發佈確認模式)
 
 NONE  
 禁用發布確認模式，是默認值   
@@ -301,3 +306,10 @@ CORRELATED
 SIMPLE  
 經測試有兩種效果，其一效果和 CORRELATED 值一樣會觸發回調方法，其二在發布消息成功后使用 rabbitTemplate 調用waitForConfirm或 waitForConfirmsOrDie 方法等待 broker 節點返回發送結果，根據返回結果來判定下一步的邏輯，要注意的點是waitForConfirmsOrDie 方法如果返回 false 則會關閉 channel，則接下來無法發送消息到 broker   
 
+
+
+### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/
+### controller/ProducerController.java(生產者)   
+### config/ConfirmConfig.java(設定)   
+### config/MyCallBack.java(*回調接口)   
+### consumer/Consumer.java(消費者)    
