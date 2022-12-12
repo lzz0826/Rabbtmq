@@ -270,7 +270,7 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好01/20000
 
 http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000   
 
-解決了一般死定隊列作為延遲隊列的瑕疵:
+解決了一般死信隊列作為延遲隊列的瑕疵:
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-11%205.18.53.png)   
 
 延時隊列在需要延時處理的場景下非常有用，使用 RabbitMQ 來實現延時隊列可以很好的利用RabbitMQ 的特性，如：消息可靠發送、消息可靠投遞、死信隊列來保障消息至少被消費一次以及未被正確處理的消息不會被丟棄。另外，通過 RabbitMQ 集群的特性，可以很好的解決單點故障問題，不會因為單個節點掛掉導致延時隊列不可用或者消息丟失。  
