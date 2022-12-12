@@ -288,8 +288,12 @@ http://localhost:8080/ttl/sendDelayMsg/插件你好02/2000
 
 ### 配置文件： 
 
-### spring.rabbitmq.publisher-returns=true (開啟退回：處理信道異常)
-當信道異常或找不到該信道時退回給生此產者
+### spring.rabbitmq.publisher-returns=true (開啟退回：處理信道異常)   
+
+rabbitTemplate.setMandatory(true);
+
+在僅開啟了生產者確認機制的情況下，交換機接收到消息后，會直接給消息生產者發送確認消息，如果發現該消息不可路由，那麼消息會被直接丟棄，此時生產者是不知道消息被丟棄這個事件的。那麼如何讓無法被路由的消息幫我想辦法處理一下？   
+通過設置 MANDATORY 參數可以在當消息傳遞過程中不可達目的地時將消息返回給生產者。
 
 ### spring.rabbitmq.publisher-confirm-type=correlated  (設定發佈確認模式:處理交換機異常)
 
