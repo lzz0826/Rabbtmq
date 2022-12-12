@@ -87,7 +87,7 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback ,RabbitTemplat
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String
             exchange, String routingKey) {
-        log.error("消息 {}, 被交换机 {} 退回，退回原因 :{}, 路由key:{}",new
+        log.error("消息 {}, 被交換機 {} 退回，退回原因 :{}, 路由key:{}",new
                 String(message.getBody()),exchange,replyText,routingKey);
 
     }

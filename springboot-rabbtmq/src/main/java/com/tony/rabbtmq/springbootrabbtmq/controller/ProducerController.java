@@ -1,6 +1,7 @@
 package com.tony.rabbtmq.springbootrabbtmq.controller;
 
 
+import com.tony.rabbtmq.springbootrabbtmq.config.ConfirmConfig;
 import com.tony.rabbtmq.springbootrabbtmq.config.DelayedQueueConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -30,23 +31,19 @@ public class ProducerController {
     @GetMapping("/sendMessage/{message}")
     public void sendMessage(@PathVariable("message") String message ){
 
-
-
-
-
         CorrelationData correlationData1 = new CorrelationData();
         //測試沒異常的情況
         correlationData1.setId("1");
-        rabbitTemplate.convertAndSend(DelayedQueueConfig.DELAYED_EXCHANG_NAME,
-                DelayedQueueConfig.DELAYED_ROUTINGKEY_NAME,message,correlationData1);
+        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                ConfirmConfig.CONFIRM_ROUTING_KEY,message,correlationData1);
         log.info("發送內容正確的 : {}" ,message+"KEY1");
 
 
-        //測試交換機死掉
+////        測試交換機死掉
 //        CorrelationData correlationData2 = new CorrelationData();
 //        correlationData2.setId("2");
-//        rabbitTemplate.convertAndSend(DelayedQueueConfig.DELAYED_EXCHANG_NAME+"123",
-//                DelayedQueueConfig.DELAYED_ROUTINGKEY_NAME,message,correlationData2);
+//        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME+"123",
+//                ConfirmConfig.CONFIRM_ROUTING_KEY,message,correlationData2);
 //        log.info("發送交換機異常的 : {}" ,message);
 
 
@@ -56,8 +53,8 @@ public class ProducerController {
 //        //測試信道機死掉 (目前回調無法解決信道死掉問題)
 //        CorrelationData correlationData3 = new CorrelationData();
 //        correlationData3.setId("3");
-//        rabbitTemplate.convertAndSend(DelayedQueueConfig.DELAYED_EXCHANG_NAME,
-//                DelayedQueueConfig.DELAYED_ROUTINGKEY_NAME+"2",message,correlationData3);
+//        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+//                ConfirmConfig.CONFIRM_ROUTING_KEY+"2",message,correlationData3);
 //        log.info("發送信道異常的 ROUTINGKEY12 : {}" ,message+"KEY12");
 
     }

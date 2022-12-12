@@ -2,6 +2,7 @@ package com.tony.rabbtmq.springbootrabbtmq.consumer;
 
 
 import com.rabbitmq.client.Channel;
+import com.tony.rabbtmq.springbootrabbtmq.config.ConfirmConfig;
 import com.tony.rabbtmq.springbootrabbtmq.config.DelayedQueueConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -17,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 public class Consumer {
 
 
-    @RabbitListener(queues = DelayedQueueConfig.DELAYED_QUEUE_NAME)
+    @RabbitListener(queues = ConfirmConfig.CONFIRM_QUEUE_NAME)
     private void getMessage(Message message , Channel channel) throws UnsupportedEncodingException {
 
         log.info("接收到的隊列消息消息 : confirm.queue消息 {}" ,
