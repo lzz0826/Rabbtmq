@@ -316,4 +316,11 @@ SIMPLE
 ### config/MyCallBack.java(*回調接口)   
 ### consumer/Consumer.java(消費者)    
 
-http://localhost:8080/confirm/sendMessage/%E9%AB%98%E7%B4%9A%E7%A2%BA%E8%AA%8D
+http://localhost:8080/confirm/sendMessage/測試內容
+
+測試交換機異常:   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%201.44.16.png](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%204.57.27.png))  
+
+測試信道機異常退回生產者:   
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%201.44.16.png](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%204.57.27.png)](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-12%204.53.42.png))  
+
