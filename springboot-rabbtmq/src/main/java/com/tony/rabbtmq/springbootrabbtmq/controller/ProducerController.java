@@ -50,12 +50,12 @@ public class ProducerController {
 
 
 
-//        //測試信道機死掉 (以設置消息回退:信道異常時退回給生產者)
-//        CorrelationData correlationData3 = new CorrelationData();
-//        correlationData3.setId("3");
-//        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
-//                ConfirmConfig.CONFIRM_ROUTING_KEY+"2",message+"KEY12",correlationData3);
-//        log.info("發送信道異常的 ROUTINGKEY12 : {}" ,message+"KEY12");
+        //測試信道機死掉 (以設置消息回退:信道異常時退回給生產者)
+        CorrelationData correlationData3 = new CorrelationData();
+        correlationData3.setId("3");
+        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                ConfirmConfig.CONFIRM_ROUTING_KEY+"2",message+"KEY12",correlationData3);
+        log.info("發送信道異常的 ROUTINGKEY12 : {}" ,message+"KEY12");
 
     }
 
