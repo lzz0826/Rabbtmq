@@ -347,6 +347,20 @@ http://localhost:8080/confirm/sendMessage/測試回調消息
 
 mandatory 參數與備份交換機可以一起使用的時候，如果兩者同時開啟，消息究竟何去何從？誰優先級高，經過上面結果显示答案是備份交換機優先級高。
 
+# 額外知識點 ： 
+
+## 優先級隊列： 
+使用場景: 客戶有分大客戶和小客戶，比如像蘋果，小米這樣大商家一年起碼能給我們創造很大的利潤，所以理應當然，他們的訂單必須得到優先處理，而曾經我們的後端系統是使用 redis 來存放的定時輪詢，大家都知道 redis 只能用 List 做一個簡簡單單的消息隊列，並不能實現一個優先級的場景，所以訂單量大了后採用 RabbitMQ 進行改造和優化,如果發現是大客戶的訂單給一個相對比較高的優先級，
+否則就是默認優先級。   
+
+控制台頁面添加: 
+![image]()     
+
+### 演示內容:
+### Rabbtmq/rabbitmqhello/src/main/java/com/tony/rabbitmq/one/Producer.java (生產者)    
+### Rabbtmq/rabbitmqhello/src/main/java/com/tony/rabbitmq/one/Consumer.java (消費者)   
+
+![image]()     
 
 
 
