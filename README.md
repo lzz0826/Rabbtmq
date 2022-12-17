@@ -312,7 +312,7 @@ SIMPLE
 
 ### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/
 ### controller/ProducerController.java(生產者)   
-### config/ConfirmConfig.java(設定)   
+### config/ConfirmConfig.java (設定.交換機.信道.綁定關西) 
 ### config/MyCallBack.java(*回調接口)   
 ### consumer/Consumer.java(消費者)    
 
@@ -328,6 +328,20 @@ http://localhost:8080/confirm/sendMessage/測試內容
 
 mandatory 參數會增加生產者的複雜性，需要添加處理這些被退回的消息的邏輯。如果既不想丟失消息，又不想增加生產者的複雜性，該怎麼做呢？   
 在 RabbitMQ 中，有一種備份交換機的機制存在，可以很好的應對這個問題。 交換機可以理解為 RabbitMQ 中交換機的“備胎”，當我們為某一個交換機聲明一個對應的備份交換機時，就是為它創建一個備胎，當交換機接收到一條不可路由消息時，將會把這條消息轉發到備份交換機中，由備份交換機來進行轉發和處理，通常備份交換機的類型為 Fanout ，這樣就能把所有消息都投遞到與其綁定的隊列中，然後我們在備份交換機下綁定一個隊列，這樣所有那些原交換機無法被路由的消息，就會都進入這個隊列了。
+
+![image]()  
+
+
+### 演示內容:demo:springboot-rabbtmq/src/main/java/com/tony/rabbtmq/springbootrabbtmq/
+springbootrabbtmq/controller/ProducerController.java (生產者)   
+springbootrabbtmq/config/ConfirmConfig.java  (設定.交換機.信道.綁定關係)   
+springbootrabbtmq/consumer/WarningConsumer.java  (消費者 接收被退回的消息警報)   
+
+
+![image]()  
+
+mandatory 參數與備份交換機可以一起使用的時候，如果兩者同時開啟，消息究竟何去何從？誰優先級高，經過上面結果显示答案是備份交換機優先級高。
+
 
 
 
