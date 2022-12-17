@@ -354,13 +354,13 @@ mandatory 參數與備份交換機可以一起使用的時候，如果兩者同�
 否則就是默認優先級。   
 
 控制台頁面添加: 
-![image]()     
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-17%203.56.22.png)     
 
 ### 演示內容:
 ### Rabbtmq/rabbitmqhello/src/main/java/com/tony/rabbitmq/one/Producer.java (生產者)    
 ### Rabbtmq/rabbitmqhello/src/main/java/com/tony/rabbitmq/one/Consumer.java (消費者)   
 
-![image]()     
+![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-17%203.49.35.png)     
 
 
 
