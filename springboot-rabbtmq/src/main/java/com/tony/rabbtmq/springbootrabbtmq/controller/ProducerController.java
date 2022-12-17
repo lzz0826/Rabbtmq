@@ -48,8 +48,6 @@ public class ProducerController {
 
 
 
-
-
         //測試信道機死掉 (以設置消息回退:信道異常時退回給生產者)
         CorrelationData correlationData3 = new CorrelationData();
         correlationData3.setId("3");
