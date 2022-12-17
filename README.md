@@ -339,6 +339,9 @@ mandatory 參數會增加生產者的複雜性，需要添加處理這些被退�
 
 ### config/MyCallBack.java(*回調接口：無需修改 備份交換機優先集高於回調接口)   
 
+測試注意事項: 重新啟動項目的時候需要把原來的 confirm.exchange 刪除因為我們修改了其綁定屬性，不然會報錯.
+
+http://localhost:8080/confirm/sendMessage/測試回調消息
 
 ![image](https://github.com/lzz0826/Rabbtmq/blob/main/jpg/2022-12-17%2011.28.07.png)  
 
